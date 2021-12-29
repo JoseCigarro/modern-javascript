@@ -1,17 +1,44 @@
 const defaultResult = 0;
-
 let currentResult = defaultResult;
 
-function add(num1, num2) {
-    const result = num1 + num2;
-    return result;
+function getUserInputNumber(){
+    return parseInt(userInput.value);
 }
 
-currentResult = add(1, 3); 
+function createAndWriteOutput(operator, resulBeforeCalc, calcNumber){
+    const numBeforeCalc = `${resulBeforeCalc} ${operator} ${calcNumber}`;
+    outputResult(currentResult, numBeforeCalc);
+}
 
-// let calculationDescription = '(' + defaultResult + ' + 10) * 9 / 4 - 1';
-// You can use the backticks and the dolar sign and the curly brackets to inject the value of a variable in a String 👍
-let calculationDescription = `(${defaultResult} + 10) * 9 / 4 - 1`;
+function add() {
+    const userInputNumber = getUserInputNumber();
+    const initialResult = currentResult;
+    currentResult = initialResult + userInputNumber; 
+    createAndWriteOutput('+', initialResult, userInputNumber);
+}
 
+function subtract(){
+    const userInputNumber = getUserInputNumber();
+    const initialResult = currentResult;
+    currentResult = initialResult - userInputNumber; 
+    createAndWriteOutput('-', initialResult, userInputNumber);
+}
 
-outputResult(currentResult, calculationDescription);
+function multiply(){
+    const userInputNumber = getUserInputNumber();
+    const initialResult = currentResult;
+    currentResult = initialResult * userInputNumber; 
+    createAndWriteOutput('*', initialResult, userInputNumber);
+}
+
+function divide(){
+    const userInputNumber = getUserInputNumber();
+    const initialResult = currentResult;
+    currentResult = initialResult / userInputNumber; 
+    createAndWriteOutput('/', initialResult, userInputNumber);
+}
+
+addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply);
+divideBtn.addEventListener('click', divide);
